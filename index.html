@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gestão Financeira</h1>
+            <nav class="tab-navigation">
+                <a href="index.html" class="tab-btn active">Dashboard</a>
+                <a href="lancamentos.html" class="tab-btn">Lançamentos</a>
+                <a href="estoque.html" class="tab-btn">Estoque</a>
+                <a href="capital.html" class="tab-btn">Capital de Giro</a>
+                <a href="mensal.html" class="tab-btn">Fluxo Mensal</a>
+                <a href="diario.html" class="tab-btn">Fluxo Diário</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <div class="card-container">
+                <div class="card border-blue">
+                    <h3>Entradas</h3>
+                    <p id="total-entradas" class="valor positivo">R$ 0,00</p>
+                </div>
+                <div class="card border-red">
+                    <h3>Saídas</h3>
+                    <p id="total-saidas" class="valor negativo">R$ 0,00</p>
+                </div>
+                <div class="card border-green">
+                    <h3>Saldo Disponível</h3>
+                    <p id="saldo-disponivel" class="valor">R$ 0,00</p>
+                    <small style="color: #888;">Líquido Total: <span id="saldo-liquido-full">R$ 0,00</span></small>
+                </div>
+            </div>
+
+            <div class="card-container mt-20">
+                <div class="card border-blue">
+                    <h3>Ticket Médio</h3>
+                    <p id="ticket-medio" class="valor" style="color: #fff;">R$ 0,00</p>
+                    <small style="color: #888;">Média por venda/serviço</small>
+                </div>
+                <div class="card border-green">
+                    <h3>🏆 Produtos Mais Vendidos</h3>
+                    <ul id="lista-mais-vendidos" style="list-style: none; padding: 0; margin-top: 10px;"></ul>
+                </div>
+            </div>
+
+            <div class="card mt-20">
+                <div style="height: 300px;"><canvas id="graficoEvolucao"></canvas></div>
+            </div>
+            
+            <div class="card mt-20 border-blue">
+                <h3>💾 Backup de Segurança</h3>
+                <p id="alerta-backup" class="aviso-texto"></p> 
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                    <button class="btn-main" onclick="exportarDados()">Baixar Backup (JSON)</button>
+                    <button class="btn-main" style="background: #444;" onclick="document.getElementById('importarFile').click()">Importar Backup</button>
+                    <input type="file" id="importarFile" style="display: none;" onchange="importarDados(this)">
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

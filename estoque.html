@@ -27,17 +27,46 @@
                 <div class="card border-green">
                     <h3>📦 Cadastrar no Estoque</h3>
                     <form id="form-cadastro-prod" class="form-vertical">
+                        <select id="c-prod-categoria" required>
+                            <option value="" disabled selected>Selecione a Categoria</option>
+                            <option value="Películas">Películas</option>
+                            <option value="Capinhas">Capinhas</option>
+                            <option value="Baterias">Baterias</option>
+                            <option value="Relógios">Relógios</option>
+                            <option value="Pulseiras">Pulseiras</option>
+                            <option value="Outros">Outros</option>
+                        </select>
                         <input type="text" id="c-prod-nome" placeholder="Nome" required>
                         <input type="number" id="c-prod-qtd" placeholder="Qtd Inicial" required>
-                        <input type="number" id="c-prod-custo" placeholder="Custo" step="0.01" required>
-                        <input type="number" id="c-prod-venda" placeholder="Venda" step="0.01" required>
+                        <input type="number" id="c-prod-custo" placeholder="Custo (R$)" step="0.01" required>
+                        <input type="number" id="c-prod-venda" placeholder="Venda (R$)" step="0.01" required>
                         <button type="submit" class="btn-main">Salvar Produto</button>
                     </form>
                 </div>
             </div>
+            
             <div class="card mt-20">
+                <div id="botoes-filtro" style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    <button onclick="filtrarTabela('Todas')" class="btn-main">Todas</button>
+                    <button onclick="filtrarTabela('Películas')" class="btn-main">Películas</button>
+                    <button onclick="filtrarTabela('Capinhas')" class="btn-main">Capinhas</button>
+                    <button onclick="filtrarTabela('Baterias')" class="btn-main">Baterias</button>
+                    <button onclick="filtrarTabela('Relógios')" class="btn-main">Relógios</button>
+                    <button onclick="filtrarTabela('Pulseiras')" class="btn-main">Pulseiras</button>
+                    <button onclick="filtrarTabela('Outros')" class="btn-main">Outros</button>
+                </div>
+
                 <table>
-                    <thead><tr><th>Tipo</th><th>Nome</th><th>Estoque</th><th>Ações (Reposição)</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Nome</th>
+                            <th>Estoque</th>
+                            <th>Custo</th>
+                            <th>Venda</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
                     <tbody id="tabela-cadastros-corpo"></tbody>
                 </table>
             </div>
